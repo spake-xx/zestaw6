@@ -4,10 +4,18 @@ import java.util.Scanner;
 public class zad3 {
     static void sumujIZapisz(String plikWe) throws IOException {
         File file = new File(plikWe);
-        Scanner reader = new Scanner(file);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(plikWe));
+        file.createNewFile();
+        BufferedReader reader = new BufferedReader(new FileReader(plikWe));
 
+        int suma = 0;
+        String readed;
+        while((readed = reader.readLine()) != null){
+            suma+=Integer.parseInt(readed);
+        }
 
+        BufferedWriter writer = new BufferedWriter(new FileWriter(plikWe, true));
+        if(suma>0) writer.newLine();
+        writer.write(String.valueOf(suma+1));
         writer.close();
     }
 
